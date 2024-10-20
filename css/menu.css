@@ -1,0 +1,158 @@
+section table {
+    font-size: 16px;
+    font-family: "Arial", sans-serif;
+}
+
+section table tbody tr td {
+    color: #3B1F0E; /* Dark brown color */
+}
+
+.drinkTitle, section table thead tr {
+    font-weight: bold;
+    text-align: center;
+}
+
+section table {
+    margin: auto;
+    width: 70%;
+    padding: 10px 0;
+}
+
+section table tbody tr:nth-child(odd){
+    background-color: #D1B38D;
+}
+
+section table tr td{
+    padding: 15px;
+}
+
+.product_checkbox {
+    background-color: #f5f5dd;
+}
+
+.priceOption{
+    font-weight: bold;
+}
+
+.subTotal, .qty {
+    width: 40px;
+    text-align: center;
+}
+
+.qtyContainer, .subTotalContainer {
+    text-align: center;
+}
+
+#totalPriceContainer {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 10px; /* Space between label and input */
+    padding: 5px; /* Add some padding around the content */
+    margin-bottom: 20px;
+}
+
+#totalPriceContainer label {
+    font-size: 24px;
+    height: 30px;
+}
+
+#totalPriceContainer #totalPrice {
+    height: 30px;
+    width: 60px;
+    text-align: center;
+}
+
+.order-button-container, .update-button-container {
+    text-align: right;
+}
+
+.submit-order, .update-button {
+    background-color: rgb(166, 124, 82);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-order:hover, .update-button:hover {
+    background-color: #8b5e3c; /* Darken on hover */
+}
+
+.submit-order:active, .update-button:active {
+    background-color: #73492f; /* Darker when clicked */
+}
+
+.submit-order:disabled, .update-button:disabled {
+    background-color: rgba(166, 124, 82, 0.5);
+    cursor: default;
+}
+
+table tbody tr:last-child > td {
+    padding-right: 20px;
+}
+
+
+.product-update {
+    margin-top: 20px;
+}
+
+.checkbox-container {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5c3c20; /* Brown text */
+    vertical-align: middle;
+}
+
+input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    appearance: none; /* Removes default styles */
+    border: 2px solid #a67c52; /* Brown border for unchecked */
+    background-color: #f4e1c1; /* Light beige background for unchecked */
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Style the checkbox when checked */
+input[type="checkbox"]:checked {
+    background-color: #a67c52; /* Darker brown when checked */
+    border-color: #a67c52; /* Brown border when checked */
+    color: #fff; /* White for any checkmark or text inside */
+}
+
+/* Add a checkmark or custom icon when checked */
+input[type="checkbox"]:checked::after {
+    content: '\2713'; /* Unicode for checkmark */
+    font-size: 16px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: 0px;
+    left: 4px;
+}
+
+/* Add hover effect for the checkbox */
+input[type="checkbox"]:hover {
+    border-color: #8b5e3c; /* Darker brown on hover */
+}
+
+
+.product-description input[type="text"] {
+    width: 60px; /* Adjust the width of the input field */
+    padding: 5px;
+    border: 1px solid #a67c52;
+    font-size: 16px;
+}
+
+.updatePrice {
+    display: none;
+}

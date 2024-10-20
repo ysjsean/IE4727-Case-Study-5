@@ -1,0 +1,116 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    min-width: 800px;
+    background-color: #D5C295;
+}
+
+.wrapper {
+    width: 80%;
+    margin: 15px auto;
+    box-shadow: 5px 5px 10px black;
+}
+
+header, footer {
+    display: block;
+    background-color: #D1B38D;
+    text-align: center;
+    padding: 15px 0;
+}
+
+footer a {
+    color: #270504;
+}
+
+header {
+    font-family: "Lucida Bright", "Georgia", serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #3B1F0E;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    font-style: italic;
+}
+
+main {
+    display: flex;
+
+}
+
+aside {
+    flex: .5;
+    background-color: #e1d1b3;
+}
+
+aside nav {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    line-height: 0px;
+    padding: 20px 0;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+aside nav a {
+    text-decoration: none;
+    color: #7d5c49;
+    padding: 10px;
+    line-height: 20px;
+}
+
+aside nav .active {
+    color: #9c8468;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+section {
+    flex: 3;
+    background-color: #f5f5dd;
+    color: #554e39;
+    padding: 15px 20px 15px;
+}
+
+.title {
+    font-family: "Arial", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #3B1F0E; /* Dark brown color */
+    margin: 0 0 20px 0px;
+}
+
+/* Notification CSS */
+.notification {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 20px;
+    right: 10%;
+    transform: translateX(-50%);
+    background-color: #28a745; /* Green for success */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease, display 0s ease 0.5s;
+}
+
+.notification.error {
+    background-color: #dc3545; /* Red for error */
+}
+
+.notification.show {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.notification.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+

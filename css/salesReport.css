@@ -1,0 +1,152 @@
+.hidden {
+    display: none;
+}
+
+section {
+    text-align: left;
+}
+
+section table {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3B1F0E; /* Dark brown color */
+    margin: 0 0 20px 0px;
+    width: 100%;
+}
+
+section table tbody tr td {
+    color: #3B1F0E; /* Dark brown color */
+}
+
+section table tr td{
+    padding: 10px;
+}
+
+.checkbox-container {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5c3c20; /* Brown text */
+    vertical-align: middle;
+}
+
+input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    appearance: none; /* Removes default styles */
+    border: 2px solid #a67c52; /* Brown border for unchecked */
+    background-color: #f4e1c1; /* Light beige background for unchecked */
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Style the checkbox when checked */
+input[type="checkbox"]:checked {
+    background-color: #a67c52; /* Darker brown when checked */
+    border-color: #a67c52; /* Brown border when checked */
+    color: #fff; /* White for any checkmark or text inside */
+}
+
+/* Add a checkmark or custom icon when checked */
+input[type="checkbox"]:checked::after {
+    content: '\2713'; /* Unicode for checkmark */
+    font-size: 16px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: 0px;
+    left: 4px;
+}
+
+/* Add hover effect for the checkbox */
+input[type="checkbox"]:hover {
+    border-color: #8b5e3c; /* Darker brown on hover */
+}
+
+.dailyReportTable {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.dailyReportTable th, .dailyReportTable td {
+    width: 33.33%;
+}
+
+.dailyReportHeader {
+    font-weight: bold;
+    text-align: center;
+    background-color: #3B1F0E;
+}
+
+.dailyReportHeader th {
+    padding: 10px;
+    color: white;
+}
+
+.dailyReportData:nth-child(odd) {
+    background-color: #D1B38D;
+}
+
+.dailyReportData:nth-child(even) {
+    background-color: #e1d1b3;
+}
+
+.dailyReportData {
+    font-size: 20px;
+    text-align: center;
+}
+
+.report-container {
+    display: grid;
+    grid-template-columns: 40px auto;
+    grid-gap: 10px;
+    align-items: center;
+    width: 100%;
+    color: #554e39;
+}
+
+.report-container label {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.report-container .checkbox {
+    justify-self: start;
+}
+
+#bestProduct {
+    display: flex;
+    font-size: 24px;
+    font-weight: bold;
+    grid-column: span 2; /* Make the table span both columns */
+    margin-bottom: 10px;
+}
+
+#bestProductAns {
+    border-bottom: 2px solid #a67c52;
+    margin-left: 20px;
+    flex: 2;
+}
+
+#salesByProductContainer, #salesByCategoryContainer {
+    grid-column: 2; /* Text input goes in the second column */
+    width: 100%;
+}
+
+.back-button {
+    background-color: rgb(166, 124, 82);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #8b5e3c; /* Darken on hover */
+}

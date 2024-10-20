@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaJam Coffee House - Jobs</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/jobs.css">
+    <script type="text/javascript" src="./js/jobs.js" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header><h1>JavaJam Coffee House</h1></header>
+        
+        <main>
+            <aside class="sideNav">
+                <nav>
+                    <a href="index.html">Home</a> &nbsp;
+                    <a href="menu.php">Menu</a> &nbsp;
+                    <a href="music.html">Music</a> &nbsp;
+                    <a class="active" href="jobs.html">Jobs</a>
+                </nav>
+            </aside>
+            
+
+            <section>
+                <div class="title">
+                    <p>Jobs at JavaJam</p>
+                </div>
+
+                <p>
+                    Want to work at JavaJam? Fill out the form below
+                    to start your application. Required fields are
+                    marked with an asterisk *
+                </p>
+
+                <form name="jobs-form" method="post" action="show_post.php" onsubmit="return handle_jobs_validation()">
+                    <div class="form-group">
+                        <label for="name">*Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name here" oninput="handle_name_validation()" />
+                        <span class="error-msg" id="error-name"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">*E-mail:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your Email-ID here" oninput="handle_email_validation()" />
+                        <span class="error-msg" id="error-email"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sDate">Start Date:</label>
+                        <input type="date" id="sDate" name="sDate" onchange="handle_sDate_validation()" />
+                        <span class="error-msg" id="error-sDate"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">*Experience:</label>
+                        <textarea name="experience" id="experience" rows="4" cols="40" placeholder="Enter your past experience here" oninput="handle_experience_validation()"></textarea>
+                        <span class="error-msg" id="error-experience"></span>
+                    </div>
+
+                    <div class="form-group-buttons">
+                        <input type="reset" value="Clear" />
+                        <input type="submit" value="Apply Now" />
+                    </div>
+                    
+                </form>
+            </section>
+        </main>
+        
+        
+        
+        <footer>
+            <i>Copyright &copy; 2014 JavaJam Coffee House</i>
+            <br/>
+            <a href="mailto:sean@young.com">sean@young.com</a>
+        </footer>
+    </div>
+    
+</body>
+</html>
