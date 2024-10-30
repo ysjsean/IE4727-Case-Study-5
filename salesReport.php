@@ -16,31 +16,66 @@
         if (isset($_SESSION["role"]) || $_SESSION["role"] !== "Admin") {
             header('menu.php');
         }
+        // Version 1: Subquery
+        // $query = "SELECT p.name Product, CASE 
+        //     WHEN po.option_type NOT IN ('Single', 'Double') THEN 'Null' 
+        //     ELSE po.option_type 
+        // END AS Category
+        // FROM orders o INNER JOIN order_line ol ON o.order_id = ol.order_id
+        // INNER JOIN product_options po ON ol.option_id = po.option_id
+        // INNER JOIN products p ON po.product_id = p.product_id
+        // WHERE DATE(ol.created_by) = CURDATE() AND p.product_id = (
+        //     SELECT p.product_id
+        //         FROM orders o INNER JOIN order_line ol ON o.order_id = ol.order_id
+        //         INNER JOIN product_options po ON ol.option_id = po.option_id
+        //         INNER JOIN products p ON po.product_id = p.product_id
+        //         WHERE DATE(ol.created_by) = CURDATE()
+        //         GROUP BY p.name
+        //         ORDER BY SUM(ol.qty * ol.price) DESC
+        //         LIMIT 1 
+        // )
+        // GROUP BY po.option_type
+        // ORDER BY SUM(ol.qty * ol.price) desc
+        // LIMIT 1;";
 
-        $query = "SELECT p.name Product, CASE 
-            WHEN po.option_type NOT IN ('Single', 'Double') THEN 'Null' 
-            ELSE po.option_type 
-        END AS Category
-        FROM orders o INNER JOIN order_line ol ON o.order_id = ol.order_id
-        INNER JOIN product_options po ON ol.option_id = po.option_id
-        INNER JOIN products p ON po.product_id = p.product_id
-        WHERE DATE(ol.created_by) = CURDATE() AND p.product_id = (
-            SELECT p.product_id
-                FROM orders o INNER JOIN order_line ol ON o.order_id = ol.order_id
+        // $results = $conn->query($query);
+
+        // $row = $results->fetch_assoc();
+        // End of version 1
+
+        // Version 2
+        $query_for_best_product = "SELECT p.product_id, p.name Product
+            FROM orders o INNER JOIN order_line ol ON o.order_id = ol.order_id 
+            INNER JOIN product_options po ON ol.option_id = po.option_id 
+            INNER JOIN products p ON po.product_id = p.product_id
+            WHERE DATE(ol.created_by) = CURDATE()
+            GROUP BY p.name
+            ORDER BY SUM(ol.qty * ol.price) desc
+            LIMIT 1;";
+
+        $results_best_product = $conn->query($query_for_best_product);
+        $row_best_product = $results_best_product->fetch_assoc();
+
+        $best_product_id = $row_best_product["product_id"] ?? "";
+
+        if ($best_product_id) {
+            $query_for_best_type = "SELECT 
+                CASE 
+                    WHEN po.option_type NOT IN ('Single', 'Double') THEN 'Null' 
+                    ELSE po.option_type 
+                END AS Category
+                FROM order_line ol
                 INNER JOIN product_options po ON ol.option_id = po.option_id
-                INNER JOIN products p ON po.product_id = p.product_id
-                WHERE DATE(ol.created_by) = CURDATE()
-                GROUP BY p.name
-                ORDER BY SUM(ol.qty * ol.price) DESC
-                LIMIT 1 
-        )
-        GROUP BY po.option_type
-        ORDER BY ol.qty desc
-        LIMIT 1;";
+                WHERE DATE(ol.created_by) = CURDATE() and po.product_id = $best_product_id
+                GROUP BY Category
+                ORDER BY SUM(ol.price * ol.qty) DESC
+                LIMIT 1;";
 
-        $results = $conn->query($query);
-
-        $row = $results->fetch_assoc();
+            $results_best_category = $conn->query($query_for_best_type);
+            $row_best_category = $results_best_category->fetch_assoc();
+        }
+        
+        // End of version 2
     ?>
 </head>
 <body>
@@ -81,9 +116,20 @@
                         <p id="bestProductDesc">Popular option of best selling product:</p>
                         <span id="bestProductAns">
                             <?php
-                                $category = $row['Category'];
-                                $product = $row['Product'];
-                                echo "$category of $product";
+                                // Version 1
+                                // $category = $row['Category'] ?? "";
+                                // $product = $row['Product'] ?? "";
+
+                                // Version 2
+                                $product = $row_best_product["Product"] ?? "";
+                                $category = $row_best_category["Category"] ?? "";
+
+                                if ($category && $product) {
+                                    echo "$category of $product";
+                                } else {
+                                    echo "No daily sales";
+                                }
+                                
                             ?>
                         </span>
                     </div>
