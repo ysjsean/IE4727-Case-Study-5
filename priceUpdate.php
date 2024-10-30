@@ -22,19 +22,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Get the new price for this option
                 $newPrice = $_POST["updatePrice_{$productId}_{$optionId}"];
+                if (is_numeric($newPrice) && $newPrice > 0) {
+                    // Update the price in the database
+                    $updateQuery = "UPDATE product_options SET price = ? WHERE option_id = ?";
+                    $updateStmt = $conn->prepare($updateQuery);
+                    $updateStmt->bind_param("di", $newPrice, $optionId);
 
-                // Update the price in the database
-                $updateQuery = "UPDATE product_options SET price = ? WHERE option_id = ?";
-                $updateStmt = $conn->prepare($updateQuery);
-                $updateStmt->bind_param("di", $newPrice, $optionId);
-
-                if ($updateStmt->execute()) {
-                    $successCount++; // Increment success count
+                    if ($updateStmt->execute()) {
+                        $successCount++; // Increment success count
+                    } else {
+                        $errorCount++; // Increment error count
+                    }
+                    $updateStmt->close();
                 } else {
-                    $errorCount++; // Increment error count
+                    $errorCount++;
                 }
-
-                $updateStmt->close();
+                
             }
 
             $stmt->close();
