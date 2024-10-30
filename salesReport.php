@@ -13,8 +13,8 @@
 
         session_start();
 
-        if (isset($_SESSION["role"]) || $_SESSION["role"] !== "Admin") {
-            header('menu.php');
+        if (isset($_SESSION["role"]) && $_SESSION["role"] !== "Admin") {
+            header('Location: menu.php');
         }
         // Version 1: Subquery
         // $query = "SELECT p.name Product, CASE 

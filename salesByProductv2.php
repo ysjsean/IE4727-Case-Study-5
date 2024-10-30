@@ -16,8 +16,8 @@
             session_start();
         }
 
-        if (isset($_SESSION["role"]) || $_SESSION["role"] !== "Admin") {
-            header('menu.php');
+        if (isset($_SESSION["role"]) && $_SESSION["role"] !== "Admin") {
+            header('Location: menu.php');
         }
 
         $query = "SELECT p.name Product, SUM(ol.qty * ol.price) 'Total Dollar Sales', SUM(ol.qty) 'Quantity Sales' 
